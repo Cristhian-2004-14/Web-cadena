@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Burger Lab - Sabor Experimental</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<nav class="navbar-sticky" id="navbar">
+    <div class="navbar-container">
+        <div class="nav-row-top">
+            <div class="logo-circle">LOGO</div>
+            
+            <button class="hamburger" id="hamburger-btn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <ul class="nav-main-links" id="nav-menu">
+                <li><a href="#hero">Inicio</a></li>
+                <li><a href="#ofertas">Ofertas</a></li>
+                <li><a href="#menu">Menú</a></li>
+                <li><a href="#ubicacion">Ubicación</a></li>
+                <li><a href="#redes">Redes Sociales</a></li>
+                <li><a href="#acerca-de">Sobre Nosotros</a></li>
+                <li><a href="#faq">Más Información</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<main> <section id="hero" class="hero-section">
+        <div class="hero-content-wrapper">
+            <h1 class="site-title">THE BURGER LAB</h1>
+            <div class="section-header" id="ofertas">
+                <h2 class="section-title">¡COMBOS Y OFERTAS!</h2>
+            </div>
+            
+            <div class="carousel-container">
+                <div class="carousel-track" id="carousel-track">
+                    <div class="carousel-item active" onclick="openModal('Combo Familiar', 'Incluye 2 hamburguesas clásicas, papas familiares y 2 bebidas grandes.', 'https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?q=80&w=800', '$25')">
+                     <img src="https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?q=80&w=800" alt="Combo 1">
+                        <div class="carousel-caption"><h3>Combo Familiar</h3><p>Ver detalles</p></div>
+                </div>
+
+            <div class="carousel-item" onclick="openModal('Dúo Dinámico', 'Dos hamburguesas con doble queso, bacon crujiente y salsa especial de la casa.', 'https://images.unsplash.com/photo-1521305916504-4a1121188589?q=80&w=800', '$18')">
+                <img src="https://images.unsplash.com/photo-1521305916504-4a1121188589?q=80&w=800" alt="Combo 2">
+                <div class="carousel-caption"><h3>Dúo Dinámico</h3><p>Ver detalles</p></div>
+            </div>
+                   
+                </div>
+                <button class="carousel-btn prev" onclick="moveSlide(-1)">❮</button>
+                <button class="carousel-btn next" onclick="moveSlide(1)">❯</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="acerca-de" class="about-section">
+        <div class="about-content-container">
+            <div class="detailed-info-block">
+                <h2>Nuestra Filosofía</h2>
+                <p>En The Burger Lab, seleccionamos cortes premium...</p>
+            </div>
+            <div class="installation-images-grid">
+                <div class="image-item" style="background: url('https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=300&q=80'); background-size: cover; height: 150px;"></div>
+                <div class="image-item" style="background: url('https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=300&q=80'); background-size: cover; height: 150px;"></div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="menu" class="menu-section">
+    <div class="menu-header"><h2 class="section-title">NUESTRAS ESPECIALIDADES</h2></div>
+    <div class="products-grid-container">
+        
+        <article class="product-card" onclick="openModal('La Clásica Lab', 'Nuestra hamburguesa insignia con carne premium de 180g, queso cheddar fundido, lechuga fresca, tomate y nuestra salsa secreta Lab.', 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=800&q=80', '$12.50')">
+            <div class="product-title-bar"><h3 class="product-name">La Clásica Lab</h3></div>
+            <div class="product-image-placeholder" style="background: url('https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=300&q=80'); background-size: cover; height: 180px;"></div>
+            <div class="product-ingredients-bar"><p>Carne 180g, Cheddar, Tomate.</p></div>
+        </article>
+
+        <article class="product-card" onclick="openModal('Bacon Explosiva', 'Para los amantes del bacon. Doble ración de tocino crujiente, cebolla caramelizada, doble queso monterey jack y barbacoa artesanal.', 'https://images.unsplash.com/photo-1553979459-d2229ba7433b?q=80&w=800', '$14.00')">
+            <div class="product-title-bar"><h3 class="product-name">Bacon Explosiva</h3></div>
+            <div class="product-image-placeholder" style="background: url('https://images.unsplash.com/photo-1553979459-d2229ba7433b?q=80&w=300'); background-size: cover; height: 180px;"></div>
+            <div class="product-ingredients-bar"><p>Doble Bacon, Cebolla, BBQ.</p></div>
+        </article>
+
+    </div> 
+</section>
+
+    <section id="ubicacion" class="location-section">
+        <div class="location-header"><h2 class="section-title">ENCUÉNTRANOS</h2></div>
+        <div class="branches-container">
+            <article class="branch-card">
+                <h3 class="branch-name">Sucursal Centro</h3>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d15000!2d-3.703790!3d40.416775!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses!2ses!4v123456789" width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </article>
+        </div>
+    </section>
+    
+    <section id="faq" class="faq-section">
+        <div class="faq-header"><h2 class="section-title">PREGUNTAS FRECUENTES</h2></div>
+        <div class="faq-grid-container">
+            <article class="faq-item">
+                <h3 class="faq-question">¿Tienen opciones sin gluten?</h3>
+                <div class="faq-answer"><p>¡Sí! Pan apto para celíacos disponible.</p></div>
+            </article>
+        </div>
+    </section>
+
+</main> 
+
+<footer class="site-footer" id="redes">
+    <div class="footer-container">
+        <section class="footer-section">
+            <h3 class="section-title">SÍGUENOS</h3>
+            <ul style="list-style: none; color: white;">
+                <li>📸 Instagram: @TheBurgerLab</li>
+                <li>📘 Facebook: /BurgerLabScience</li>
+            </ul>
+        </section>
+        
+        <section class="footer-section" id="contacto">
+            <h3 class="section-title">CONTACTO</h3>
+            <ul style="list-style: none; color: white;">
+                <li>📞 Pedidos: +34 900 123 456</li>
+                <li>📧 Email: hola@burgerlab.com</li>
+            </ul>
+        </section>
+    </div>
+    <div class="copyright-bar">
+        <p>© 2025 The Burger Lab. Todos los derechos reservados.</p>
+    </div>
+</footer>
+
+<script src="scripts.js"></script>
+<div id="modal-overlay" class="modal-overlay" onclick="closeModal()">
+    <div class="modal-content" onclick="event.stopPropagation()">
+        <div class="modal-body">
+            <img id="modal-img" src="" alt="Producto">
+            <div class="modal-text">
+                <h2 id="modal-title"></h2>
+                <p id="modal-description"></p>
+                <h3 id="modal-price" style="color: var(--color-primario); margin-top: 15px;"></h3>
+                <button class="btn-mas" onclick="closeModal()" style="margin-top: 20px; background: var(--color-primario); color: white;">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

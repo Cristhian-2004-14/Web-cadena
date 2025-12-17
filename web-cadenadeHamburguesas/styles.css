@@ -1,0 +1,402 @@
+/* IMPORTAR FUENTE PROFESIONAL */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+:root {
+    --color-primario: #e63946;
+    --color-secundario: #f1faee;
+    --color-acento: #457b9d;
+    --color-texto: #1d3557;
+    --color-gris-suave: #f8f9fa;
+    --shadow: 0 4px 15px rgba(0,0,0,0.1);
+    --transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* === ESTILOS DEL MODAL (DISEÑO PROFESIONAL) === */
+.modal-overlay {
+    display: none; 
+    position: fixed;
+    top: 0; 
+    left: 0;
+    width: 100%; 
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(8px); /* Efecto de desenfoque de fondo */
+    z-index: 3000;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    transition: opacity 0.3s ease;
+}
+
+.modal-content {
+    background: white;
+    width: 100%;
+    max-width: 800px;
+    border-radius: 20px;
+    overflow: hidden; 
+    position: relative;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+    /* Animación de entrada con rebote sutil */
+    animation: modalAppear 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes modalAppear {
+    from { 
+        opacity: 0; 
+        transform: scale(0.8) translateY(20px); 
+    }
+    to { 
+        opacity: 1; 
+        transform: scale(1) translateY(0); 
+    }
+}
+
+.modal-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr; 
+}
+
+.modal-body img {
+    width: 100%;
+    height: 100%;
+    max-height: 450px;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+/* Efecto zoom al pasar sobre la imagen del modal */
+.modal-body img:hover {
+    transform: scale(1.05);
+}
+
+.modal-text {
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.modal-text h2 {
+    font-size: 2rem;
+    color: var(--color-texto);
+    margin-bottom: 15px;
+}
+
+.modal-text p {
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+#modal-price {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--color-primario);
+}
+
+.btn-cerrar-modal {
+    margin-top: 20px;
+    background: var(--color-primario);
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: var(--transition);
+}
+
+.btn-cerrar-modal:hover {
+    background: #c32f3a;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(230, 57, 70, 0.3);
+}
+
+.btn-cerrar-modal:active {
+    transform: scale(0.95);
+}
+
+/* Ajuste para móviles */
+@media (max-width: 650px) {
+    .modal-body {
+        grid-template-columns: 1fr; 
+    }
+    .modal-text {
+        padding: 20px;
+    }
+}
+
+/* Estilo para el menú activo en móvil */
+@media (max-width: 1024px) {
+    .nav-main-links.active {
+        display: flex !important;
+        animation: slideInDown 0.4s ease-out;
+    }
+}
+
+@keyframes slideInDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* 1. RESET Y CONFIGURACIÓN BASE ANTI-OVERFLOW */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    max-width: 100%;
+    overflow-x: hidden; 
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    color: var(--color-texto);
+    background-color: #fff;
+    line-height: 1.6;
+    padding-top: 70px; 
+}
+
+/* 2. LAYOUT RESPONSIVO Y CARGA DE SECCIONES */
+.navbar-container, .footer-container, main {
+    width: 92%; 
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+section {
+    padding: 40px 0; 
+    scroll-margin-top: 80px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInSection 0.8s ease forwards;
+}
+
+@keyframes fadeInSection {
+    to { 
+        opacity: 1; 
+        transform: translateY(0); 
+    }
+}
+
+/* 3. NAVBAR Y MENÚ HAMBURGUESA */
+.navbar-sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: var(--color-primario);
+    box-shadow: var(--shadow);
+    z-index: 2000;
+    padding: 12px 0;
+    transition: background 0.3s ease;
+}
+
+.nav-row-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-circle {
+    background: white;
+    color: var(--color-primario);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+}
+
+.logo-circle:hover {
+    transform: rotate(15deg) scale(1.1);
+}
+
+.nav-main-links {
+    display: flex;
+    list-style: none;
+    gap: 15px;
+}
+
+.nav-main-links a {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    padding: 8px 12px;
+    border-radius: 8px;
+    transition: var(--transition);
+}
+
+.nav-main-links a:hover {
+    background: rgba(255, 255, 255, 0.2);
+    color: var(--color-secundario);
+}
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    transition: transform 0.2s ease;
+}
+
+.hamburger:active {
+    transform: scale(0.9);
+}
+
+.hamburger span {
+    width: 25px;
+    height: 3px;
+    background: white;
+    border-radius: 3px;
+    transition: 0.3s;
+}
+
+/* 4. CARRUSEL ADAPTABLE */
+.carousel-container {
+    position: relative;
+    width: 100%;
+    margin: 20px auto;
+    height: 400px; 
+    overflow: hidden;
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+}
+
+.carousel-item {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out;
+}
+
+.carousel-item.active { 
+    opacity: 1; 
+    z-index: 10; 
+}
+
+.carousel-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 10s ease-out; /* Efecto Ken Burns (zoom lento) */
+}
+
+.carousel-item.active img {
+    transform: scale(1.15);
+}
+
+.carousel-caption {
+    position: absolute;
+    bottom: 0;
+    background: linear-gradient(transparent, rgba(0,0,0,0.85));
+    color: white;
+    width: 100%;
+    padding: 30px 15px;
+    text-align: center;
+    z-index: 15;
+}
+
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(5px);
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    z-index: 20;
+    border-radius: 50%;
+    transition: var(--transition);
+}
+
+.carousel-btn:hover {
+    background: var(--color-primario);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.prev { left: 15px; }
+.next { right: 15px; }
+
+/* 5. GRIDS ADAPTABLES (PRODUCTOS Y SUCURSALES) */
+.products-grid-container, 
+.branches-container, 
+.faq-grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 25px;
+}
+
+.product-card {
+    cursor: pointer; 
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+}
+
+.product-card:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+}
+
+.product-image-placeholder {
+    transition: transform 0.5s ease;
+}
+
+.product-card:hover .product-image-placeholder {
+    transform: scale(1.1); /* Zoom de imagen en hover */
+}
+
+/* 6. MEDIA QUERIES (REPARACIÓN CELULAR) */
+@media (max-width: 1024px) {
+    .hamburger { 
+        display: flex; 
+    }
+
+    .nav-main-links {
+        display: none; 
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: var(--color-primario);
+        padding: 20px 0;
+        z-index: 999;
+        box-shadow: 0 10px 10px rgba(0,0,0,0.2);
+    }
+}
+
+@media (max-width: 600px) {
+    .carousel-container { 
+        height: 280px; 
+    }
+    
+    .product-card:hover {
+        transform: translateY(-5px);
+    }
+}
+
+/* 7. FOOTER */
+.site-footer {
+    background: var(--color-texto);
+    color: white;
+    padding: 40px 0 20px;
+    margin-top: 40px;
+}
