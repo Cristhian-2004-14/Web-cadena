@@ -4,150 +4,373 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Burger Lab - Sabor Experimental</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-<nav class="navbar-sticky" id="navbar">
-    <div class="navbar-container">
-        <div class="nav-row-top">
-            <div class="logo-circle">LOGO</div>
-            
-            <button class="hamburger" id="hamburger-btn">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
+    <nav class="navbar-sticky" id="navbar">
+        <div class="navbar-container">
+            <div class="nav-row-top">
+                <a href="#hero">
+                <img src="logo.png" alt="The Burger Lab Logo" class="logo-img">
+               
+            </a>
+                
+                
+                <button class="hamburger" id="hamburger-btn" aria-label="Abrir menú">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
 
-            <ul class="nav-main-links" id="nav-menu">
-                <li><a href="#hero">Inicio</a></li>
-                <li><a href="#ofertas">Ofertas</a></li>
-                <li><a href="#menu">Menú</a></li>
-                <li><a href="#ubicacion">Ubicación</a></li>
-                <li><a href="#redes">Redes Sociales</a></li>
-                <li><a href="#acerca-de">Sobre Nosotros</a></li>
-                <li><a href="#faq">Más Información</a></li>
-            </ul>
+                <ul class="nav-main-links" id="nav-menu">
+                    <li><a href="#hero">Inicio</a></li>
+                    <li><a href="#menu">Menú</a></li>
+                    <li><a href="#ubicacion">Ubicación</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                    <li><a href="#redes">Contacto</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="cart-floating-btn" onclick="toggleCart()" role="button" aria-label="Ver carrito">
+        <span id="cart-count">0</span>
+        <span style="font-size: 1.5rem;">🛒</span>
+    </div>
+
+    <aside id="cart-drawer" class="cart-drawer">
+        <div class="cart-header">
+            <h2>TU PEDIDO</h2>
+            <button class="close-cart" onclick="toggleCart()">✕</button>
+        </div>
+        
+        <div id="cart-items-container" class="cart-items-container">
+            <p class="empty-cart-msg">Tu laboratorio está vacío...</p>
+        </div>
+
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total estimado:</span>
+                <span id="cart-total-amount">$0.00</span>
+            </div>
+            <button class="btn-checkout" onclick="checkoutWhatsApp()">PEDIR POR WHATSAPP</button>
+        </div>
+    </aside>
+
+    <main>
+        <section id="hero" class="hero-section">
+            <div class="hero-content-wrapper">
+                <h1 class="site-title">THE BURGER LAB</h1>
+                
+                <div class="section-header">
+                    <h2 class="section-title">¡EXPERIMENTOS DEL MES!</h2>
+                </div>
+                
+                <div class="carousel-container">
+                    <div class="carousel-track" id="carousel-track">
+    <div class="carousel-item active" onclick="openModal('Combo Familiar', '2 burgers clásicas + papas familiares + 2 bebidas de 500ml.', 'https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?q=80&w=800', '175 Bs')">
+        <img src="https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?q=80&w=800" alt="Combo Familiar">
+        <div class="carousel-caption">
+            <h3>Combo Familiar</h3>
+            <p>Toca para ver detalles - 175 Bs</p>
         </div>
     </div>
-</nav>
 
-<main> <section id="hero" class="hero-section">
-        <div class="hero-content-wrapper">
-            <h1 class="site-title">THE BURGER LAB</h1>
-            <div class="section-header" id="ofertas">
-                <h2 class="section-title">¡COMBOS Y OFERTAS!</h2>
-            </div>
-            
-            <div class="carousel-container">
-                <div class="carousel-track" id="carousel-track">
-                    <div class="carousel-item active" onclick="openModal('Combo Familiar', 'Incluye 2 hamburguesas clásicas, papas familiares y 2 bebidas grandes.', 'https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?q=80&w=800', '$25')">
-                     <img src="https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?q=80&w=800" alt="Combo 1">
-                        <div class="carousel-caption"><h3>Combo Familiar</h3><p>Ver detalles</p></div>
-                </div>
-
-            <div class="carousel-item" onclick="openModal('Dúo Dinámico', 'Dos hamburguesas con doble queso, bacon crujiente y salsa especial de la casa.', 'https://images.unsplash.com/photo-1521305916504-4a1121188589?q=80&w=800', '$18')">
-                <img src="https://images.unsplash.com/photo-1521305916504-4a1121188589?q=80&w=800" alt="Combo 2">
-                <div class="carousel-caption"><h3>Dúo Dinámico</h3><p>Ver detalles</p></div>
-            </div>
-                   
-                </div>
-                <button class="carousel-btn prev" onclick="moveSlide(-1)">❮</button>
-                <button class="carousel-btn next" onclick="moveSlide(1)">❯</button>
-            </div>
+    <div class="carousel-item" onclick="openModal('Dúo Dinámico', '2 burgers doble queso + bacon + salsa secreta + porción de papas.', 'https://images.unsplash.com/photo-1521305916504-4a1121188589?q=80&w=800', '125 Bs')">
+        <img src="https://images.unsplash.com/photo-1521305916504-4a1121188589?q=80&w=800" alt="Dúo Dinámico">
+        <div class="carousel-caption">
+            <h3>Dúo Dinámico</h3>
+            <p>Toca para ver detalles - 125 Bs</p>
         </div>
-    </section>
+    </div>
 
-    <section id="acerca-de" class="about-section">
-        <div class="about-content-container">
-            <div class="detailed-info-block">
-                <h2>Nuestra Filosofía</h2>
-                <p>En The Burger Lab, seleccionamos cortes premium...</p>
-            </div>
-            <div class="installation-images-grid">
-                <div class="image-item" style="background: url('https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=300&q=80'); background-size: cover; height: 150px;"></div>
-                <div class="image-item" style="background: url('https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=300&q=80'); background-size: cover; height: 150px;"></div>
-            </div>
+    <div class="carousel-item" onclick="openModal('El Científico', 'Burger Triple Carne + Papas Volcánicas + Cerveza Artesanal IPA.', 'https://images.unsplash.com/photo-1561758033-d89a9ad46330?q=80&w=800', '95 Bs')">
+        <img src="https://images.unsplash.com/photo-1561758033-d89a9ad46330?q=80&w=800" alt="El Científico">
+        <div class="carousel-caption">
+            <h3>El Científico</h3>
+            <p>Toca para ver detalles - 95 Bs</p>
         </div>
-    </section>
+    </div>
+
+    <div class="carousel-item" onclick="openModal('Lab Party', '4 burgers simples + 2 porciones de Tenders + Coca Cola 2L.', 'https://images.unsplash.com/photo-1610614819513-58e34989848b?q=80&w=800', '250 Bs')">
+        <img src="https://images.unsplash.com/photo-1610614819513-58e34989848b?q=80&w=800" alt="Lab Party">
+        <div class="carousel-caption">
+            <h3>Lab Party</h3>
+            <p>Toca para ver detalles - 250 Bs</p>
+        </div>
+    </div>
+
     
-    <section id="menu" class="menu-section">
-    <div class="menu-header"><h2 class="section-title">NUESTRAS ESPECIALIDADES</h2></div>
-    <div class="products-grid-container">
-        
-        <article class="product-card" onclick="openModal('La Clásica Lab', 'Nuestra hamburguesa insignia con carne premium de 180g, queso cheddar fundido, lechuga fresca, tomate y nuestra salsa secreta Lab.', 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=800&q=80', '$12.50')">
-            <div class="product-title-bar"><h3 class="product-name">La Clásica Lab</h3></div>
-            <div class="product-image-placeholder" style="background: url('https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=300&q=80'); background-size: cover; height: 180px;"></div>
-            <div class="product-ingredients-bar"><p>Carne 180g, Cheddar, Tomate.</p></div>
-        </article>
+</div>
+                    </div>
+                    <button class="carousel-btn prev" onclick="moveSlide(-1)">❮</button>
+                    <button class="carousel-btn next" onclick="moveSlide(1)">❯</button>
+                </div>
+            </div>
+        </section>
 
-        <article class="product-card" onclick="openModal('Bacon Explosiva', 'Para los amantes del bacon. Doble ración de tocino crujiente, cebolla caramelizada, doble queso monterey jack y barbacoa artesanal.', 'https://images.unsplash.com/photo-1553979459-d2229ba7433b?q=80&w=800', '$14.00')">
-            <div class="product-title-bar"><h3 class="product-name">Bacon Explosiva</h3></div>
-            <div class="product-image-placeholder" style="background: url('https://images.unsplash.com/photo-1553979459-d2229ba7433b?q=80&w=300'); background-size: cover; height: 180px;"></div>
-            <div class="product-ingredients-bar"><p>Doble Bacon, Cebolla, BBQ.</p></div>
-        </article>
+        <section id="menu" class="menu-section">
+            <div class="menu-header">
+                <h2 class="section-title">NUESTRO MENÚ 🧪</h2>
+            </div>
 
-    </div> 
+            <div class="filter-controls">
+                <button class="filter-btn active" onclick="filterMenu('all')">Todas</button>
+                <button class="filter-btn" onclick="filterMenu('carne')">Carnívoras</button>
+                <button class="filter-btn" onclick="filterMenu('veggie')">Veggies</button>
+                <button class="filter-btn" onclick="filterMenu('bebidas')">Bebidas</button>
+                <button class="filter-btn" onclick="filterMenu('vegan')">Opciones Veganas</button>
+                <button class="filter-btn" onclick="filterMenu('saludable')">Saludables</button>
+                <button class="filter-btn" onclick="filterMenu('pollo')">Pollo</button>
+                <button class="filter-btn" onclick="filterMenu('entradas')">Entradas</button>
+                <button class="filter-btn" onclick="filterMenu('postres')">Postres</button>
+            </div>
+
+            <div class="products-grid-container">
+    <article class="product-card carne show" onclick="openModal('La Clásica Lab', 'Carne premium 180g, cheddar, lechuga, tomate y salsa Lab.', 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=800&q=80', '88 Bs')">
+        <div class="product-title-bar"><h3>La Clásica Lab</h3></div>
+        <div class="product-image-container">
+            <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=500&q=80" alt="La Clásica Lab">
+        </div>
+        <div class="product-ingredients-bar"><p>Carne 180g, Cheddar. <b>88 Bs</b></p></div>
+    </article>
+
+    <article class="product-card carne show" onclick="openModal('Bacon Explosiva', 'Doble tocino, cebolla caramelizada y BBQ artesanal.', 'https://images.unsplash.com/photo-1553979459-d2229ba7433b?q=80&w=800', '98 Bs')">
+        <div class="product-title-bar"><h3>Bacon Explosiva</h3></div>
+        <div class="product-image-container">
+            <img src="https://images.unsplash.com/photo-1553979459-d2229ba7433b?q=80&w=500" alt="Bacon Explosiva">
+        </div>
+        <div class="product-ingredients-bar"><p>Doble Bacon, BBQ. <b>98 Bs</b></p></div>
+    </article>
+
+    <article class="product-card carne show" onclick="openModal('Nuclear Bacon', 'Triple dosis de tocino ahumado, cebolla crispy y salsa BBQ volcánica.', 'https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?q=80&w=800', '108 Bs')">
+        <div class="product-title-bar"><h3>Nuclear Bacon</h3></div>
+        <div class="product-image-container"><img src="https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?q=80&w=500"></div>
+        <div class="product-ingredients-bar"><p>Triple Bacon, BBQ. <b>108 Bs</b></p></div>
+    </article>
+
+    <article class="product-card carne show" onclick="openModal('Blue Matter', 'Carne rellena de queso azul, champiñones al vino tinto y rúcula.', 'https://images.unsplash.com/photo-1565299507177-b0ac66763828?q=80&w=800', '115 Bs')">
+        <div class="product-title-bar"><h3>Blue Matter</h3></div>
+        <div class="product-image-container"><img src="https://images.unsplash.com/photo-1565299507177-b0ac66763828?q=80&w=500"></div>
+        <div class="product-ingredients-bar"><p>Queso Azul, Rúcula. <b>115 Bs</b></p></div>
+    </article>
+
+    <article class="product-card pollo show" onclick="openModal('Crispy Atom', 'Pechuga de pollo súper crujiente, pepinillos y mostaza dulce.', 'https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?q=80&w=800', '80 Bs')">
+        <div class="product-title-bar"><h3>Crispy Atom</h3></div>
+        <div class="product-image-container"><img src="https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?q=80&w=500"></div>
+        <div class="product-ingredients-bar"><p>Pollo Crispy, Honey Mustard. <b>80 Bs</b></p></div>
+    </article>
+
+    <article class="product-card pollo show" onclick="openModal('Spicy Raptor', 'Pollo marinado en sriracha, col rizada y mayonesa picante.', 'https://images.unsplash.com/photo-1623653387945-2fd25214f8fc?q=80&w=800', '84 Bs')">
+        <div class="product-title-bar"><h3>Spicy Raptor</h3></div>
+        <div class="product-image-container"><img src="https://images.unsplash.com/photo-1623653387945-2fd25214f8fc?q=80&w=500"></div>
+        <div class="product-ingredients-bar"><p>Pollo Picante, Sriracha. <b>84 Bs</b></p></div>
+    </article>
+
+    <article class="product-card vegan show" onclick="openModal('Bio-Garden', 'Falsa carne de soja, queso vegano de coco y vegetales frescos.', 'https://images.unsplash.com/photo-1585238342024-78d387f4a707?q=80&w=800', '91 Bs')">
+        <div class="product-title-bar"><h3>Bio-Garden</h3></div>
+        <div class="product-image-container"><img src="https://images.unsplash.com/photo-1585238342024-78d387f4a707?q=80&w=500"></div>
+        <div class="product-ingredients-bar"><p>Soja, Queso Vegan. <b>91 Bs</b></p></div>
+    </article>
+
+    <article class="product-card saludable show" onclick="openModal('Green Formula', 'Bowl de espinaca, garbanzos ahumados, quinoa y dressing de limón.', 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=800', '73 Bs')">
+        <div class="product-title-bar"><h3>Green Formula</h3></div>
+        <div class="product-image-container"><img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=500"></div>
+        <div class="product-ingredients-bar"><p>Quinoa, Garbanzos. <b>73 Bs</b></p></div>
+    </article>
+
+    <article class="product-card saludable show" onclick="openModal('Fit Experiment', 'Pan integral, pollo al grill, palta y queso bajo en grasas.', 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=800', '77 Bs')">
+        <div class="product-title-bar"><h3>Fit Experiment</h3></div>
+        <div class="product-image-container"><img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=500"></div>
+        <div class="product-ingredients-bar"><p>Pollo Grill, Palta. <b>77 Bs</b></p></div>
+    </article>
+
+    <article class="product-card entradas show" onclick="openModal('Papas Volcánicas', 'Papas rústicas bañadas en cheddar líquido y lluvia de tocino.', 'https://images.unsplash.com/photo-1573080496219-bb080dd4f877?q=80&w=800', '45 Bs')">
+        <div class="product-title-bar"><h3>Papas Volcánicas</h3></div>
+        <div class="product-image-container"><img src="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?q=80&w=500"></div>
+        <div class="product-ingredients-bar"><p>Cheddar, Bacon. <b>45 Bs</b></p></div>
+    </article>
+
+    <article class="product-card entradas show" onclick="openModal('Tenders Lab', 'Tiras de pollo empanizadas con panko y especias secretas.', 'https://images.unsplash.com/photo-1562967914-608f82629710?q=80&w=800', '60 Bs')">
+        <div class="product-title-bar"><h3>Tenders Lab</h3></div>
+        <div class="product-image-container"><img src="https://images.unsplash.com/photo-1562967914-608f82629710?q=80&w=500"></div>
+        <div class="product-ingredients-bar"><p>Pollo Panko, Salsas. <b>60 Bs</b></p></div>
+    </article>
+
+    <article class="product-card bebidas show" onclick="openModal('Nitro Tea', 'Té frío con infusión de nitrógeno y frutos del bosque.', 'https://images.unsplash.com/photo-1556679343-c7306c1976bc?q=80&w=800', '28 Bs')">
+        <div class="product-title-bar"><h3>Nitro Tea</h3></div>
+        <div class="product-image-container"><img src="https://images.unsplash.com/photo-1556679343-c7306c1976bc?q=80&w=500"></div>
+        <div class="product-ingredients-bar"><p>Té Frío, Frutos Rojos. <b>28 Bs</b></p></div>
+    </article>
+
+    <article class="product-card bebidas show" onclick="openModal('Cerveza Lab', 'Cerveza artesanal de la casa, estilo IPA.', 'https://images.unsplash.com/photo-1535958636474-b021ee887b13?q=80&w=800', '38 Bs')">
+        <div class="product-title-bar"><h3>Cerveza Lab</h3></div>
+        <div class="product-image-container"><img src="https://images.unsplash.com/photo-1535958636474-b021ee887b13?q=80&w=500"></div>
+        <div class="product-ingredients-bar"><p>Artesanal IPA. <b>38 Bs</b></p></div>
+    </article>
+
+    <article class="product-card postres show" onclick="openModal('Brownie Fusion', 'Brownie caliente con centro de lava de chocolate y helado.', 'https://images.unsplash.com/photo-1564355808539-22fda35bed7e?q=80&w=800', '42 Bs')">
+        <div class="product-title-bar"><h3>Brownie Fusion</h3></div>
+        <div class="product-image-container"><img src="https://images.unsplash.com/photo-1564355808539-22fda35bed7e?q=80&w=500"></div>
+        <div class="product-ingredients-bar"><p>Chocolate, Helado. <b>42 Bs</b></p></div>
+    </article>
+    <article class="product-card carne show" onclick="openModal('Monster Lab', 'Triple carne 180g, huevo frito, tocino, extra queso y aros de cebolla.', 'https://images.unsplash.com/photo-1550547660-d9450f859349?q=80&w=800', '130 Bs')">
+    <div class="product-title-bar"><h3>Monster Lab</h3></div>
+    <div class="product-image-container"><img src="https://images.unsplash.com/photo-1550547660-d9450f859349?q=80&w=500"></div>
+    <div class="product-ingredients-bar"><p>Triple Carne, Huevo. <b>130 Bs</b></p></div>
+</article>
+
+<article class="product-card carne show" onclick="openModal('Trufada Experimental', 'Carne de res con aceite de trufa blanca, champiñones salteados y queso suizo.', 'https://images.unsplash.com/photo-1596662951482-0c4ba74a6df6?q=80&w=800', '95 Bs')">
+    <div class="product-title-bar"><h3>Trufada Experimental</h3></div>
+    <div class="product-image-container"><img src="https://images.unsplash.com/photo-1596662951482-0c4ba74a6df6?q=80&w=500"></div>
+    <div class="product-ingredients-bar"><p>Trufa, Champiñones. <b>95 Bs</b></p></div>
+</article>
+
+<article class="product-card pollo show" onclick="openModal('Atomic Wings', '8 alitas bañadas en salsa Buffalo picante con dip de queso azul.', 'https://images.unsplash.com/photo-1527477396000-e27163b481c2?q=80&w=800', '55 Bs')">
+    <div class="product-title-bar"><h3>Atomic Wings</h3></div>
+    <div class="product-image-container"><img src="https://images.unsplash.com/photo-1527477396000-e27163b481c2?q=80&w=500"></div>
+    <div class="product-ingredients-bar"><p>Alitas Hot, Blue Cheese. <b>55 Bs</b></p></div>
+</article>
+
+<article class="product-card saludable show" onclick="openModal('Bowl de Energía', 'Mix de verdes, salmón a la plancha, palta, edamames y sésamo.', 'https://images.unsplash.com/photo-1467003909585-2f8a72700288?q=80&w=800', '85 Bs')">
+    <div class="product-title-bar"><h3>Bowl de Energía</h3></div>
+    <div class="product-image-container"><img src="https://images.unsplash.com/photo-1467003909585-2f8a72700288?q=80&w=500"></div>
+    <div class="product-ingredients-bar"><p>Salmón, Palta. <b>85 Bs</b></p></div>
+</article>
+
+<article class="product-card entradas show" onclick="openModal('Nachos Lab', 'Nachos artesanales con chili de res, jalapeños y guacamole.', 'https://images.unsplash.com/photo-1513456852971-30c0b8199d4d?q=80&w=800', '50 Bs')">
+    <div class="product-title-bar"><h3>Nachos Lab</h3></div>
+    <div class="product-image-container"><img src="https://images.unsplash.com/photo-1513456852971-30c0b8199d4d?q=80&w=500"></div>
+    <div class="product-ingredients-bar"><p>Chili, Guacamole. <b>50 Bs</b></p></div>
+</article>
+
+<article class="product-card bebidas show" onclick="openModal('Milkshake Galaxia', 'Batido espeso de Oreo con crema chantilly y chispas espaciales.', 'https://images.unsplash.com/photo-1572490122747-3968b75cc699?q=80&w=800', '35 Bs')">
+    <div class="product-title-bar"><h3>Milkshake Galaxia</h3></div>
+    <div class="product-image-container"><img src="https://images.unsplash.com/photo-1572490122747-3968b75cc699?q=80&w=500"></div>
+    <div class="product-ingredients-bar"><p>Oreo, Chantilly. <b>35 Bs</b></p></div>
+</article>
+
+<article class="product-card bebidas show" onclick="openModal('Limonada de Carbón', 'Limonada negra (carbón activado) con menta fresca y jengibre.', 'https://images.unsplash.com/photo-1551024709-8f23befc6f87?q=80&w=800', '25 Bs')">
+    <div class="product-title-bar"><h3>Limonada de Carbón</h3></div>
+    <div class="product-image-container"><img src="https://images.unsplash.com/photo-1551024709-8f23befc6f87?q=80&w=500"></div>
+    <div class="product-ingredients-bar"><p>Negra, Menta, Jengibre. <b>25 Bs</b></p></div>
+</article>
+
+<article class="product-card postres show" onclick="openModal('Cheesecake Newton', 'Tarta de queso cremosa con coulis de frutos rojos y base de galleta.', 'https://images.unsplash.com/photo-1533134242443-d4fd215305ad?q=80&w=800', '48 Bs')">
+    <div class="product-title-bar"><h3>Cheesecake Newton</h3></div>
+    <div class="product-image-container"><img src="https://images.unsplash.com/photo-1533134242443-d4fd215305ad?q=80&w=500"></div>
+    <div class="product-ingredients-bar"><p>Queso, Frutos Rojos. <b>48 Bs</b></p></div>
+</article>
+<article class="product-card veggie show" onclick="openModal('Halloumi Lab', 'Queso Halloumi a la plancha, pimientos asados, berenjena y pesto de albahaca.', 'https://images.unsplash.com/photo-1592415499556-74fcb9f18667?q=80&w=800', '78 Bs')">
+    <div class="product-title-bar"><h3>Halloumi Lab</h3></div>
+    <div class="product-image-container"><img src="https://images.unsplash.com/photo-1592415499556-74fcb9f18667?q=80&w=500"></div>
+    <div class="product-ingredients-bar"><p>Queso Halloumi, Pesto. <b>78 Bs</b></p></div>
+</article>
+
+<article class="product-card veggie show" onclick="openModal('Crispy Pumpkin', 'Medallón de zapallo y maíz, queso fundido, espinaca y alioli de ajo negro.', 'https://images.unsplash.com/photo-1520201163981-8cc95007dd2a?q=80&w=800', '65 Bs')">
+    <div class="product-title-bar"><h3>Crispy Pumpkin</h3></div>
+    <div class="product-image-container"><img src="https://images.unsplash.com/photo-1520201163981-8cc95007dd2a?q=80&w=500"></div>
+    <div class="product-ingredients-bar"><p>Zapallo, Ajo Negro. <b>65 Bs</b></p></div>
+</article>
+
+
+<article class="product-card vegan show" onclick="openModal('Tofu Tectonic', 'Tofu marinado en soja y jengibre, coleslaw de manzana y mayonesa vegana picante.', 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=800', '72 Bs')">
+    <div class="product-title-bar"><h3>Tofu Tectonic</h3></div>
+    <div class="product-image-container"><img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=500"></div>
+    <div class="product-ingredients-bar"><p>Tofu, Manzana. <b>72 Bs</b></p></div>
+</article>
+
+<article class="product-card vegan show" onclick="openModal('Quinoa Core', 'Hamburguesa de quinoa real roja, hummus de pimentón y brotes de alfalfa.', 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=800', '68 Bs')">
+    <div class="product-title-bar"><h3>Quinoa Core</h3></div>
+    <div class="product-image-container"><img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=500"></div>
+    <div class="product-ingredients-bar"><p>Quinoa, Hummus. <b>68 Bs</b></p></div>
+</article>
+</div>
+           
+            </div> 
+        </section>
+
+        <section id="ubicacion-norte" class="location-section">
+    <h2 class="section-title">SUCURSAL NORTE: REACTOR 1</h2>
+    <p style="text-align:center; color: #fff;">Av. Banzer entre 2do y 3er anillo</p>
+    <div class="map-container">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3799.303102484469!2d-63.185078!3d-17.762029!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x93f1e7d9cc172111%3A0x2f22b2fcdfdba999!2sCanadian%20Food%20Scz!5e0!3m2!1ses!2sbo!4v1700000000000" width="100%" height="350" style="border:0; border-radius: 15px;" allowfullscreen="" loading="lazy"></iframe>
+    </div>
 </section>
 
-    <section id="ubicacion" class="location-section">
-        <div class="location-header"><h2 class="section-title">ENCUÉNTRANOS</h2></div>
-        <div class="branches-container">
-            <article class="branch-card">
-                <h3 class="branch-name">Sucursal Centro</h3>
-                <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d15000!2d-3.703790!3d40.416775!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses!2ses!4v123456789" width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-            </article>
-        </div>
-    </section>
-    
-    <section id="faq" class="faq-section">
-        <div class="faq-header"><h2 class="section-title">PREGUNTAS FRECUENTES</h2></div>
-        <div class="faq-grid-container">
-            <article class="faq-item">
-                <h3 class="faq-question">¿Tienen opciones sin gluten?</h3>
-                <div class="faq-answer"><p>¡Sí! Pan apto para celíacos disponible.</p></div>
-            </article>
-        </div>
-    </section>
-
-</main> 
-
-<footer class="site-footer" id="redes">
-    <div class="footer-container">
-        <section class="footer-section">
-            <h3 class="section-title">SÍGUENOS</h3>
-            <ul style="list-style: none; color: white;">
-                <li>📸 Instagram: @TheBurgerLab</li>
-                <li>📘 Facebook: /BurgerLabScience</li>
-            </ul>
-        </section>
-        
-        <section class="footer-section" id="contacto">
-            <h3 class="section-title">CONTACTO</h3>
-            <ul style="list-style: none; color: white;">
-                <li>📞 Pedidos: +34 900 123 456</li>
-                <li>📧 Email: hola@burgerlab.com</li>
-            </ul>
-        </section>
+<section id="ubicacion-sur" class="location-section">
+    <h2 class="section-title">SUCURSAL SUR: LABORATORIO ALPHA</h2>
+    <p style="text-align:center; color: #fff;">Av. Santos Dumont, zona 3er Anillo</p>
+    <div class="map-container">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3798.850000000000!2d-63.18389!3d-17.818337!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x93f1e834cad2b28f%3A0x29adeb7cba19a844!2sPatio%20de%20Comidas%20Santos%20Dumont!5e0!3m2!1ses!2sbo!4v1700000000001" width="100%" height="350" style="border:0; border-radius: 15px;" allowfullscreen="" loading="lazy"></iframe>
     </div>
-    <div class="copyright-bar">
-        <p>© 2025 The Burger Lab. Todos los derechos reservados.</p>
-    </div>
-</footer>
+</section>
 
-<script src="scripts.js"></script>
-<div id="modal-overlay" class="modal-overlay" onclick="closeModal()">
-    <div class="modal-content" onclick="event.stopPropagation()">
-        <div class="modal-body">
-            <img id="modal-img" src="" alt="Producto">
-            <div class="modal-text">
-                <h2 id="modal-title"></h2>
-                <p id="modal-description"></p>
-                <h3 id="modal-price" style="color: var(--color-primario); margin-top: 15px;"></h3>
-                <button class="btn-mas" onclick="closeModal()" style="margin-top: 20px; background: var(--color-primario); color: white;">Cerrar</button>
+<section id="ubicacion-equipetrol" class="location-section">
+    <h2 class="section-title">EQUIPETROL: BASE DE EXPERIMENTACIÓN</h2>
+    <p style="text-align:center; color: #fff;">Calle Manuel Güemes, Equipetrol</p>
+    <div class="map-container">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3799.155555555555!2d-63.193013!3d-17.771703!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x93f1e78eb8c7ce31%3A0x1618c98ec982886e!2sCasa%20Patio%20Equipetrol!5e0!3m2!1ses!2sbo!4v1700000000002" width="100%" height="350" style="border:0; border-radius: 15px;" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+</section>
+
+        <section id="faq" class="faq-section">
+            <h2 class="section-title">REPORTE TÉCNICO (FAQ)</h2>
+            <div class="faq-container">
+                <details>
+                    <summary>¿Tienen opciones sin gluten?</summary>
+                    <p>¡Sí! Podemos preparar cualquier burger con pan keto/gluten-free por un costo adicional.</p>
+                </details>
+                <details>
+                    <summary>¿Cuál es el tiempo de entrega?</summary>
+                    <p>Nuestros experimentos toman entre 30 a 45 minutos en promedio.</p>
+                </details>
+            </div>
+        </section>
+    </main> 
+
+    <footer id="redes" class="site-footer">
+        <div class="footer-grid">
+            <div class="footer-info">
+                <h3>THE BURGER LAB</h3>
+                <p>Ciencia aplicada al sabor. </p>
+            </div>
+            <div class="footer-links">
+                    <h4>Canales oficiales</h4>
+                     <a href="https://www.instagram.com/explore" target="_blank">Instagram</a>
+                    <a href="https://www.tiktok.com/trending" target="_blank">TikTok</a>
+                    <a href="https://www.facebook.com/facebook" target="_blank">Facebook</a>
+                    <a href="https://wa.me/69078166" target="_blank">WhatsApp</a>
+            </div>
+        </div>
+        <p class="copyright">© 2025 The Burger Lab - Santa Cruz, Bolivia.</p>
+    </footer>
+
+    <div id="modal-overlay" class="modal-overlay" onclick="closeModal()">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <div class="modal-body">
+                <div class="modal-img-container">
+                    <img id="modal-img" src="" alt="Producto Detalle">
+                </div>
+                <div class="modal-text">
+                    <h2 id="modal-title"></h2>
+                    <p id="modal-description"></p>
+                    <h3 id="modal-price" style="color: var(--color-primario); margin: 15px 0;"></h3>
+                    
+                    <button class="btn-checkout" id="btn-add-to-cart">
+                        AÑADIR AL EXPERIMENTO
+                    </button>
+                    
+                    <button class="btn-cerrar-modal" onclick="closeModal()" style="margin-top: 10px; background: #eee; color: #333; border:none; padding: 10px; border-radius: 5px; cursor: pointer;">
+                        Volver al menú
+                    </button>
+                </div>
             </div>
         </div>
     </div>
-</div>
+
+    <script src="scripts.js"></script>
 </body>
 </html>
