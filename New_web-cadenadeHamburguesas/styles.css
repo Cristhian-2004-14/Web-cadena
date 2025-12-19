@@ -1,0 +1,995 @@
+/* IMPORTAR FUENTE PROFESIONAL */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+:root {
+    --color-primario: #e63946;
+    --color-secundario: #f1faee;
+    --color-acento: #457b9d;
+    --color-texto: #1d3557;
+    --color-gris-suave: #f8f9fa;
+    --shadow: 0 4px 15px rgba(0,0,0,0.1);
+    --transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* === ESTILOS DEL MODAL (DISEÑO PROFESIONAL) === */
+.modal-overlay {
+    display: none; 
+    position: fixed;
+    top: 0; 
+    left: 0;
+    width: 100%; 
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(8px); /* Efecto de desenfoque de fondo */
+    z-index: 3000;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    transition: opacity 0.3s ease;
+}
+
+.modal-content {
+    background: white;
+    width: 100%;
+    max-width: 800px;
+    border-radius: 20px;
+    overflow: hidden; 
+    position: relative;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+    /* Animación de entrada con rebote sutil */
+    animation: modalAppear 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes modalAppear {
+    from { 
+        opacity: 0; 
+        transform: scale(0.8) translateY(20px); 
+    }
+    to { 
+        opacity: 1; 
+        transform: scale(1) translateY(0); 
+    }
+}
+
+.modal-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr; 
+}
+
+.modal-body img {
+    width: 100%;
+    height: 100%;
+    max-height: 450px;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+/* Efecto zoom al pasar sobre la imagen del modal */
+.modal-body img:hover {
+    transform: scale(1.05);
+}
+
+.modal-text {
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.modal-text h2 {
+    font-size: 2rem;
+    color: var(--color-texto);
+    margin-bottom: 15px;
+}
+
+.modal-text p {
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+#modal-price {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--color-primario);
+}
+
+.btn-cerrar-modal {
+    margin-top: 20px;
+    background: var(--color-primario);
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: var(--transition);
+}
+
+.btn-cerrar-modal:hover {
+    background: #c32f3a;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(230, 57, 70, 0.3);
+}
+
+.btn-cerrar-modal:active {
+    transform: scale(0.95);
+}
+
+/* Ajuste para móviles */
+@media (max-width: 650px) {
+    .modal-body {
+        grid-template-columns: 1fr; 
+    }
+    .modal-text {
+        padding: 20px;
+    }
+}
+
+/* Estilo para el menú activo en móvil */
+@media (max-width: 1024px) {
+    .nav-main-links.active {
+        display: flex !important;
+        animation: slideInDown 0.4s ease-out;
+    }
+}
+
+@keyframes slideInDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* 1. RESET Y CONFIGURACIÓN BASE ANTI-OVERFLOW */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    max-width: 100%;
+    overflow-x: hidden; 
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    color: var(--color-texto);
+    background-color: #fff;
+    line-height: 1.6;
+    padding-top: 70px; 
+}
+
+/* 2. LAYOUT RESPONSIVO Y CARGA DE SECCIONES */
+.navbar-container, .footer-container, main {
+    width: 92%; 
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+section {
+    padding: 40px 0; 
+    scroll-margin-top: 80px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInSection 0.8s ease forwards;
+}
+
+@keyframes fadeInSection {
+    to { 
+        opacity: 1; 
+        transform: translateY(0); 
+    }
+}
+
+/* 3. NAVBAR Y MENÚ HAMBURGUESA */
+.navbar-sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: var(--color-primario);
+    box-shadow: var(--shadow);
+    z-index: 2000;
+    padding: 12px 0;
+    transition: background 0.3s ease;
+}
+
+.nav-row-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-circle {
+    background: white;
+    color: var(--color-primario);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+}
+
+.logo-circle:hover {
+    transform: rotate(15deg) scale(1.1);
+}
+
+.nav-main-links {
+    display: flex;
+    list-style: none;
+    gap: 15px;
+}
+
+.nav-main-links a {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    padding: 8px 12px;
+    border-radius: 8px;
+    transition: var(--transition);
+}
+
+.nav-main-links a:hover {
+    background: rgba(255, 255, 255, 0.2);
+    color: var(--color-secundario);
+}
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    transition: transform 0.2s ease;
+}
+
+.hamburger:active {
+    transform: scale(0.9);
+}
+
+.hamburger span {
+    width: 25px;
+    height: 3px;
+    background: white;
+    border-radius: 3px;
+    transition: 0.3s;
+}
+
+/* === VARIABLES Y RESET (Asegúrate de tener estos colores) === */
+:root {
+    --color-primario: #e63946;
+    --color-texto: #1d3557;
+    --color-gris-suave: #f8f9fa;
+    --shadow-premium: 0 10px 30px rgba(0,0,0,0.08);
+    --transition-smooth: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+/* === 4. CARRUSEL ELITE === */
+.carousel-container {
+    position: relative;
+    width: 100%;
+    margin: 30px auto;
+    height: 450px; 
+    overflow: hidden;
+    border-radius: 25px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+.carousel-item {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.carousel-item.active { 
+    opacity: 1; 
+    z-index: 10; 
+}
+
+.carousel-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 12s linear; /* Efecto Ken Burns más fluido */
+}
+
+.carousel-item.active img {
+    transform: scale(1.2);
+}
+
+/* Caption con efecto Blur Moderno */
+.carousel-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 100%);
+    backdrop-filter: blur(2px);
+    color: white;
+    padding: 50px 20px;
+    text-align: center;
+    z-index: 15;
+}
+
+.carousel-caption h3 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* Botones Navegación Estilo Lab */
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.3);
+    color: white;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    z-index: 20;
+    border-radius: 50%;
+    transition: var(--transition-smooth);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+}
+
+.carousel-btn:hover {
+    background: var(--color-primario);
+    border-color: var(--color-primario);
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 0 20px rgba(230, 57, 70, 0.5);
+}
+
+.prev { left: 20px; }
+.next { right: 20px; }
+
+/* === 5. GRID Y TARJETAS DINÁMICAS (DISEÑO EXPERIMENTAL) === */
+.products-grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 35px;
+    padding: 20px 0;
+}
+
+/* === BLOQUE DE TARJETA ACTUALIZADO === */
+.product-card {
+    position: relative;
+    cursor: pointer;
+    background: white;
+    border-radius: 24px;
+    overflow: hidden;
+    /* Cambio clave: Borde base transparente para evitar saltos */
+    border: 2px solid transparent; 
+    box-shadow: var(--shadow-premium);
+    transition: var(--transition-smooth);
+}
+
+/* === EL EFECTO HOVER (REEMPLAZA TAMBIÉN EL ANTERIOR) === */
+.product-card:hover {
+    transform: translateY(-15px);
+    /* Aquí se activa el contorno rojo */
+    border-color: var(--color-primario); 
+    /* Resplandor rojo sutil */
+    box-shadow: 0 25px 50px rgba(230, 57, 70, 0.2); 
+}
+
+/* Contenedor de Imagen con Overlay Dinámico */
+.product-image-container {
+    position: relative;
+    width: 100%;
+    height: 230px;
+    overflow: hidden;
+}
+
+.product-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s cubic-bezier(0.2, 1, 0.3, 1);
+}
+
+/* Badge de "Fórmula Nueva" */
+.product-card::before {
+    content: "🧪 TESTED";
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: var(--color-primario);
+    color: white;
+    padding: 6px 14px;
+    border-radius: 50px;
+    font-size: 0.7rem;
+    font-weight: 800;
+    z-index: 5;
+    box-shadow: 0 4px 10px rgba(230, 57, 70, 0.3);
+}
+
+/* Overlay que aparece en hover */
+.product-card .image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(29, 53, 87, 0.4);
+    opacity: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.4s ease;
+    z-index: 2;
+}
+
+.product-card:hover .image-overlay {
+    opacity: 1;
+}
+
+.product-card:hover .product-image-container img {
+    transform: scale(1.15) rotate(1deg);
+}
+
+/* Cuerpo de la Tarjeta */
+.product-title-bar {
+    padding: 20px 20px 5px 20px;
+    text-align: left;
+}
+
+.product-title-bar h3 {
+    font-size: 1.25rem;
+    color: var(--color-texto);
+    font-weight: 800;
+    margin: 0;
+}
+
+.product-ingredients-bar {
+    padding: 0 20px 25px 20px;
+}
+
+.product-ingredients-bar p {
+    font-size: 0.9rem;
+    color: #6c757d;
+    line-height: 1.4;
+    margin: 10px 0;
+}
+
+.product-ingredients-bar b {
+    display: block;
+    font-size: 1.4rem;
+    color: var(--color-primario);
+    margin-top: 15px;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Efecto de Brillo de Laboratorio al pasar el mouse */
+.product-card:hover::after {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
+    opacity: 0.5;
+    transform: rotate(30deg);
+    transition: all 0.5s;
+    pointer-events: none;
+}
+
+/* 6. MEDIA QUERIES (REPARACIÓN CELULAR) */
+@media (max-width: 1024px) {
+    .hamburger { 
+        display: flex; 
+    }
+
+    .nav-main-links {
+        display: none; 
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: var(--color-primario);
+        padding: 20px 0;
+        z-index: 999;
+        box-shadow: 0 10px 10px rgba(0,0,0,0.2);
+    }
+}
+
+@media (max-width: 600px) {
+    .carousel-container { 
+        height: 280px; 
+    }
+    
+    .product-card:hover {
+        transform: translateY(-5px);
+    }
+}
+
+/* 7. FOOTER */
+.site-footer {
+    background: var(--color-texto);
+    color: white;
+    padding: 40px 0 20px;
+    margin-top: 40px;
+}
+/* Botones de Filtro */
+.filter-btn {
+    background: transparent;
+    border: 2px solid var(--color-primario);
+    color: var(--color-primario);
+    padding: 8px 20px;
+    margin: 5px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.filter-btn:hover {
+    background: var(--color-primario);
+    color: white;
+}
+
+.filter-btn.active {
+    background: var(--color-primario);
+    color: white;
+    box-shadow: 0 4px 12px rgba(230, 57, 70, 0.3);
+}
+
+/* Animación de los productos al filtrar */
+.product-card.hidden {
+    display: none;
+    opacity: 0;
+    transform: scale(0.8);
+}
+
+.product-card.show {
+    display: block;
+    animation: fadeInScale 0.4s forwards;
+}
+
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+/* === ESTILOS DEL CARRITO (SIDE DRAWER) === */
+
+/* 1. Botón Flotante (Círculo con precio/contador) */
+.cart-floating-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: var(--color-primario);
+    color: white;
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 2500;
+    box-shadow: 0 8px 25px rgba(230, 57, 70, 0.4);
+    transition: var(--transition);
+}
+
+.cart-floating-btn:hover {
+    transform: scale(1.1) rotate(-5deg);
+}
+
+#cart-count {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: var(--color-texto);
+    color: white;
+    font-size: 0.8rem;
+    padding: 4px 8px;
+    border-radius: 50%;
+    font-weight: bold;
+    border: 2px solid white;
+}
+
+/* 2. Panel Lateral (Drawer) */
+.cart-drawer {
+    position: fixed;
+    top: 0;
+    right: -100%; /* Oculto por defecto */
+    width: 100%;
+    max-width: 420px;
+    height: 100%;
+    background: white;
+    z-index: 4000;
+    box-shadow: -10px 0 30px rgba(0,0,0,0.2);
+    transition: right 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+    display: flex;
+    flex-direction: column;
+}
+
+.cart-drawer.active {
+    right: 0;
+}
+
+.cart-header {
+    padding: 25px;
+    background: var(--color-texto);
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.close-cart {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.8rem;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.close-cart:hover {
+    transform: rotate(90deg);
+}
+
+/* 3. Lista de Productos en el Carrito */
+.cart-items-container {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px;
+    background: #fff;
+}
+
+.cart-item {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #f0f0f0;
+    animation: slideInRight 0.3s ease forwards;
+}
+
+@keyframes slideInRight {
+    from { opacity: 0; transform: translateX(20px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+.cart-item img {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+.cart-item-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.cart-item-info h4 {
+    font-size: 1rem;
+    color: var(--color-texto);
+    margin: 0;
+}
+
+/* 4. Controles de Cantidad (+ / -) */
+.quantity-controls {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin: 8px 0;
+}
+
+.quantity-controls button {
+    width: 28px;
+    height: 28px;
+    border: 1px solid #ddd;
+    background: white;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.2s;
+}
+
+.quantity-controls button:hover {
+    background: var(--color-primario);
+    color: white;
+    border-color: var(--color-primario);
+}
+
+.quantity-controls span {
+    font-weight: 600;
+    min-width: 20px;
+    text-align: center;
+}
+
+/* 5. Botón Eliminar Todo */
+.btn-eliminar-item {
+    background: none;
+    border: none;
+    color: #e63946;
+    font-size: 0.8rem;
+    text-align: left;
+    padding: 0;
+    cursor: pointer;
+    text-decoration: underline;
+    width: fit-content;
+    opacity: 0.8;
+}
+
+.btn-eliminar-item:hover {
+    opacity: 1;
+    font-weight: 600;
+}
+
+.item-subtotal {
+    font-weight: 700;
+    color: var(--color-primario);
+    align-self: center;
+}
+
+/* 6. Footer del Carrito (Total y Botón) */
+.cart-footer {
+    padding: 25px;
+    background: var(--color-gris-suave);
+    border-top: 2px solid #eee;
+}
+
+.cart-total {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.25rem;
+    font-weight: 800;
+    margin-bottom: 20px;
+    color: var(--color-texto);
+}
+
+/* Estilo especial para el botón de WhatsApp en el carrito */
+.cart-footer .btn-checkout {
+    width: 100%;
+    padding: 18px;
+    background: #25D366;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    transition: var(--transition);
+}
+
+.cart-footer .btn-checkout:hover {
+    background: #128c7e;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(37, 211, 102, 0.3);
+}
+
+/* Scrollbar personalizado para el carrito */
+.cart-items-container::-webkit-scrollbar {
+    width: 6px;
+}
+
+.cart-items-container::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 10px;
+}
+/* Botón principal en el Modal */
+#btn-add-to-cart {
+    width: 100%;
+    padding: 15px;
+    background-color: #e63946; /* Rojo vibrante */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(230, 57, 70, 0.3);
+}
+
+#btn-add-to-cart:hover {
+    background-color: #c12e3a;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(230, 57, 70, 0.4);
+}
+
+#btn-add-to-cart:active {
+    transform: translateY(0);
+}
+/* Botón de eliminar dentro de cada producto del carrito */
+.btn-eliminar-item {
+    background: #fff0f0; /* Fondo rojizo muy suave */
+    color: #e63946;
+    border: 1px solid #ffcccc;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 8px;
+    transition: all 0.2s ease;
+    width: fit-content;
+}
+
+.btn-eliminar-item:hover {
+    background: #e63946;
+    color: white;
+    border-color: #e63946;
+}
+/* === CORRECCIÓN SECCIÓN CONTACTO (FOOTER) === */
+.site-footer {
+    background-color: #1d3557; /* El color azul oscuro de tu marca */
+    color: white;
+    padding: 60px 20px 30px;
+    position: relative;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding-bottom: 30px;
+}
+
+.footer-info h3 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+}
+
+.footer-info p {
+    color: #a8dadc; /* Un azul claro para el eslogan */
+    font-size: 1rem;
+}
+
+.footer-links h4 {
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+}
+
+/* Arreglo de los enlaces invisibles */
+.footer-links a {
+    display: block;
+    color: white !important; /* Forzamos color blanco */
+    text-decoration: none;
+    margin-bottom: 12px;
+    transition: var(--transition-smooth);
+    font-weight: 400;
+    opacity: 0.8;
+}
+
+.footer-links a:hover {
+    color: var(--color-primario) !important; /* Rojo al pasar el mouse */
+    opacity: 1;
+    transform: translateX(5px);
+}
+
+.copyright {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.5);
+}
+
+/* Ajuste del botón flotante para que no tape el contenido en móviles */
+@media (max-width: 768px) {
+    .cart-floating-btn {
+        bottom: 20px;
+        right: 20px;
+        width: 55px;
+        height: 55px;
+    }
+    
+    .footer-grid {
+        text-align: center;
+    }
+
+/*botones del flitro*/
+}
+.footer-links a {
+    color: #ffffff !important;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 10px;
+    transition: 0.3s;
+}
+
+.footer-links a:hover {
+    color: #e63946 !important; 
+    padding-left: 5px; 
+}
+.filter-controls {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap; 
+    margin-bottom: 40px;
+    padding: 0 10px;
+}
+
+@media (max-width: 600px) {
+    .filter-controls {
+        justify-content: flex-start;
+        overflow-x: auto; 
+        white-space: nowrap;
+        padding-bottom: 10px;
+    }
+    .filter-btn {
+        flex: 0 0 auto; 
+    }
+}
+
+.nav-logo a {
+    display: flex;         
+    align-items: center;  
+    text-decoration: none; 
+    gap: 12px;            
+    padding: 5px 0;
+}
+.logo-img {
+    height: 50px;         
+    width: auto;          
+    border-radius: 50%;    
+    transition: all 0.3s ease; 
+    filter: drop-shadow(0 0 5px rgba(0, 255, 100, 0.5)); 
+}
+.logo-text {
+    font-size: 1.4rem;     
+    font-weight: 800;   
+    color: #ffffff;     
+    text-transform: uppercase; 
+    letter-spacing: 1px; 
+    font-family: 'Poppins', sans-serif;
+}
+.nav-logo a:hover .logo-img {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 10px #00ff64); 
+}
+
+.nav-logo a:hover .logo-text {
+    color: #00ff64; 
+}
+@media (max-width: 480px) {
+    .logo-img {
+        height: 40px; 
+    }
+    .logo-text {
+        font-size: 1.1rem; 
+    }
+}
