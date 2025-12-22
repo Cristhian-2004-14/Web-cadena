@@ -338,12 +338,47 @@
                 <p>Ciencia aplicada al sabor. </p>
             </div>
             <div class="footer-links">
-                    <h4>Canales oficiales</h4>
-                     <a href="https://www.instagram.com/explore" target="_blank">Instagram</a>
-                    <a href="https://www.tiktok.com/trending" target="_blank">TikTok</a>
-                    <a href="https://www.facebook.com/facebook" target="_blank">Facebook</a>
-                    <a href="https://wa.me/69078166" target="_blank">WhatsApp</a>
+    <h4>Canales oficiales</h4>
+    <a href="https://www.instagram.com/explore" target="_blank">Instagram</a>
+    <a href="https://www.tiktok.com/trending" target="_blank">TikTok</a>
+    <a href="https://www.facebook.com/facebook" target="_blank">Facebook</a>
+    <a href="https://wa.me/69078166" target="_blank">WhatsApp</a>
+    
+    <a href="javascript:void(0)" id="abrir-soporte" style="color: #00ff64; font-weight: bold;">🧪 Soporte Técnico</a>
+</div>
+
+<div id="modal-soporte-unico" class="modal-simple-overlay">
+    <div class="modal-simple-content">
+        <span id="cerrar-soporte-unico" class="modal-simple-close">&times;</span>
+        <h3>Laboratorio de Soporte</h3>
+        <form id="form-soporte-dual">
+            <input type="text" id="nombre-soporte" placeholder="Tu nombre" required>
+                                <div class="soporte-options-group">
+                <p>Tipo de solicitud:</p>
+                <div class="radio-container">
+                    <label class="radio-item">
+                        <input type="radio" name="motivo" value="Queja" checked>
+                        <span>Queja</span>
+                    </label>
+                    <label class="radio-item">
+                        <input type="radio" name="motivo" value="Sugerencia">
+                        <span>Sugerencia</span>
+                    </label>
+                    <label class="radio-item">
+                        <input type="radio" name="motivo" value="Otra">
+                        <span>Otra</span>
+                    </label>
+                </div>
             </div>
+
+            <textarea id="mensaje-soporte" placeholder="Escribe tu mensaje aquí..." required></textarea>
+            
+            <div class="soporte-botones-container">
+                <button type="button" id="btn-enviar-wa" class="btn-wa">WhatsApp</button>
+            </div>
+        </form>
+    </div>
+</div>
         </div>
         <p class="copyright">© 2025 The Burger Lab - Santa Cruz, Bolivia.</p>
     </footer>

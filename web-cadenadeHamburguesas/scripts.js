@@ -80,7 +80,7 @@ function actualizarInterfazCarrito() {
     let unidadesTotales = 0;
 
     carrito.forEach((item, index) => {
-        // CAMBIO AQUÍ: Ahora limpia " Bs" en lugar de "$"
+    
         const precioNum = parseFloat(item.price.replace(' Bs', ''));
         const subtotal = precioNum * item.cantidad;
         totalGlobal += subtotal;
@@ -182,19 +182,48 @@ function filterMenu(category) {
     });
 }
 
-// === 6. ANIMACIONES DE APARICIÓN (REVEAL) ===
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.opacity = "1";
-            entry.target.style.transform = "translateY(0)";
-        }
-    });
-}, { threshold: 0.1 });
+/* === 6. MODAL DE SOPORTE (VERSIÓN FINAL) === */
+const modalSoporte = document.getElementById('modal-soporte-unico');
+const btnAbrirSoporte = document.getElementById('abrir-soporte');
+const btnCerrarSoporte = document.getElementById('cerrar-soporte-unico');
+const btnEnviarWA = document.getElementById('btn-enviar-wa');
+const btnEnviarEmail = document.getElementById('btn-enviar-email');
 
-document.querySelectorAll('section').forEach(section => {
-    section.style.transition = "all 0.8s ease-out";
-    section.style.opacity = "0"; // Inicializamos en 0
-    section.style.transform = "translateY(20px)"; // Inicializamos abajo
-    observer.observe(section);
-});
+if (btnAbrirSoporte) {
+    btnAbrirSoporte.onclick = (e) => { e.preventDefault(); modalSoporte.style.display = 'flex'; };
+}
+
+if (btnCerrarSoporte) {
+    btnCerrarSoporte.onclick = () => { modalSoporte.style.display = 'none'; };
+}
+
+window.onclick = (event) => {
+    if (event.target == modalSoporte) modalSoporte.style.display = 'none';
+};
+
+function obtenerDatosSoporte() {
+    const nombre = document.getElementById('nombre-soporte')?.value;
+    const email = document.getElementById('email-soporte')?.value;
+    const asunto = document.getElementById('asunto-soporte')?.value || "Sin asunto";
+    const mensaje = document.getElementById('mensaje-soporte')?.value;
+    const motivo = document.querySelector('input[name="motivo"]:checked')?.value || "General";
+
+    if (!nombre || !email || !mensaje) {
+        alert("Por favor completa los campos principales (Nombre, Email y Mensaje)");
+        return null;
+    }
+
+    return { nombre, email, asunto, mensaje, motivo };
+}
+
+// Envío WhatsApp
+if (btnEnviarWA) {
+    btnEnviarWA.onclick = () => {
+        const d = obtenerDatosSoporte();
+        if (!d) return;
+        const textoWA = `*SOPORTE BURGER LAB*%0A*Nombre:* ${d.nombre}%0A*Email:* ${d.email}%0A*Motivo:* ${d.motivo}%0A*Asunto:* ${d.asunto}%0A*Mensaje:* ${d.mensaje}`;
+        window.open(`https://wa.me/59169078166?text=${textoWA}`, '_blank');
+        modalSoporte.style.display = 'none';
+    };
+}
+

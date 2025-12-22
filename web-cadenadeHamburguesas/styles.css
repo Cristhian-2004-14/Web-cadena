@@ -993,3 +993,131 @@ section {
         font-size: 1.1rem; 
     }
 }
+/* === ESTILOS MODAL SOPORTE (ROJO Y BLANCO) === */
+/* === CSS ESTRUCTURA DEL MODAL (INDISPENSABLE PARA QUE ABRA) === */
+.modal-simple-overlay {
+    display: none; /* Se activa con JS (display: flex) */
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.85); /* Fondo oscuro */
+    backdrop-filter: blur(5px);
+    z-index: 99999;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+}
+
+.modal-simple-content {
+    background: #ffffff;
+    width: 100%;
+    max-width: 400px;
+    padding: 25px;
+    border-radius: 20px;
+    position: relative;
+    border-bottom: 8px solid #e63946;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    max-height: 95vh;
+    overflow-y: auto;
+}
+
+/* === ESTILO DE LOS CAMPOS (INPUTS Y TEXTAREA) === */
+.modal-simple-content input[type="text"],
+.modal-simple-content input[type="email"],
+.modal-simple-content textarea {
+    width: 100% !important;
+    box-sizing: border-box !important;
+    margin-bottom: 12px !important;
+    padding: 12px !important;
+    border: 1px solid #ddd !important;
+    border-radius: 10px !important;
+    font-size: 16px !important;
+}
+
+/* === ESTILO DE LAS OPCIONES TIKEABLES (LO QUE ME PASASTE) === */
+.soporte-options-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.soporte-options-group p {
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #1d3557;
+    margin-bottom: 8px;
+}
+
+.radio-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.radio-item {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-size: 0.85rem;
+    color: #1d3557;
+}
+
+/* El círculo tikeable personalizado */
+.radio-item input[type="radio"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 18px !important;
+    height: 18px !important;
+    border: 2px solid #e63946 !important;
+    border-radius: 50% !important;
+    margin-right: 6px !important;
+    margin-bottom: 0 !important;
+    position: relative;
+    cursor: pointer;
+    background: #fff;
+}
+
+.radio-item input[type="radio"]:checked::before {
+    content: "";
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: #e63946;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* === BOTONES DE ACCIÓN === */
+.soporte-botones-container {
+    display: flex;
+    gap: 10px;
+}
+
+.soporte-botones-container button {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+.btn-wa { background: #25D366; }
+.btn-mail { background: #e63946; }
+
+.modal-simple-close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 25px;
+    cursor: pointer;
+    color: #333;
+}
+
+/* Móvil responsivo */
+@media (max-width: 400px) {
+    .radio-container { flex-direction: column; gap: 8px; }
+    .soporte-botones-container { flex-direction: column; }
+}
