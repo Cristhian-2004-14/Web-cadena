@@ -181,49 +181,67 @@ function filterMenu(category) {
         }
     });
 }
-
-/* === 6. MODAL DE SOPORTE (VERSIÓN FINAL) === */
+/* === 6. MODAL DE SOPORTE (SOLO WHATSAPP) === */
 const modalSoporte = document.getElementById('modal-soporte-unico');
-const btnAbrirSoporte = document.getElementById('abrir-soporte');
+const btnAbrirSoporte = document.getElementById('abrir-soporte'); // Asegúrate de que tu botón de contacto tenga este ID
 const btnCerrarSoporte = document.getElementById('cerrar-soporte-unico');
 const btnEnviarWA = document.getElementById('btn-enviar-wa');
-const btnEnviarEmail = document.getElementById('btn-enviar-email');
+const formSoporte = document.getElementById('form-soporte-dual');
 
+// Abrir Modal
 if (btnAbrirSoporte) {
-    btnAbrirSoporte.onclick = (e) => { e.preventDefault(); modalSoporte.style.display = 'flex'; };
+    btnAbrirSoporte.onclick = (e) => { 
+        e.preventDefault(); 
+        modalSoporte.style.display = 'flex'; 
+    };
 }
 
+// Cerrar Modal (Botón X)
 if (btnCerrarSoporte) {
-    btnCerrarSoporte.onclick = () => { modalSoporte.style.display = 'none'; };
+    btnCerrarSoporte.onclick = () => { 
+        modalSoporte.style.display = 'none'; 
+    };
 }
 
+// Cerrar al hacer clic fuera del contenido
 window.onclick = (event) => {
-    if (event.target == modalSoporte) modalSoporte.style.display = 'none';
+    if (event.target == modalSoporte) {
+        modalSoporte.style.display = 'none';
+    }
 };
 
+// Función para obtener y validar los datos del formulario
 function obtenerDatosSoporte() {
     const nombre = document.getElementById('nombre-soporte')?.value;
-    const email = document.getElementById('email-soporte')?.value;
-    const asunto = document.getElementById('asunto-soporte')?.value || "Sin asunto";
     const mensaje = document.getElementById('mensaje-soporte')?.value;
     const motivo = document.querySelector('input[name="motivo"]:checked')?.value || "General";
 
-    if (!nombre || !email || !mensaje) {
-        alert("Por favor completa los campos principales (Nombre, Email y Mensaje)");
+    // Validación según los campos de tu nuevo HTML
+    if (!nombre || !mensaje) {
+        alert("🧪 Por favor completa tu nombre y el mensaje para el laboratorio.");
         return null;
     }
 
-    return { nombre, email, asunto, mensaje, motivo };
+    return { nombre, mensaje, motivo };
 }
 
-// Envío WhatsApp
+// Envío exclusivo por WhatsApp
 if (btnEnviarWA) {
     btnEnviarWA.onclick = () => {
         const d = obtenerDatosSoporte();
         if (!d) return;
-        const textoWA = `*SOPORTE BURGER LAB*%0A*Nombre:* ${d.nombre}%0A*Email:* ${d.email}%0A*Motivo:* ${d.motivo}%0A*Asunto:* ${d.asunto}%0A*Mensaje:* ${d.mensaje}`;
+
+        // Estructura del mensaje para WhatsApp
+        const textoWA = `*🧪 SOPORTE - THE BURGER LAB*%0A%0A` +
+                        `*Nombre:* ${d.nombre}%0A` +
+                        `*Motivo:* ${d.motivo}%0A` +
+                        `*Mensaje:* ${d.mensaje}`;
+
+        // Abrir WhatsApp con el número corporativo
         window.open(`https://wa.me/59169078166?text=${textoWA}`, '_blank');
+        
+        // Resetear y cerrar
+        if (formSoporte) formSoporte.reset();
         modalSoporte.style.display = 'none';
     };
 }
-
